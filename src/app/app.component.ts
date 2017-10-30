@@ -3,8 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
+import { UserCalendarPage } from '../pages/user-calendar/user-calendar';
+import { SetAvailabilityPage } from '../pages/set-availability/set-availability';
+import { CourseDetailsPage } from '../pages/course-details/course-details';
+import { ChangeMpinPage } from '../pages/change-mpin/change-mpin';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,17 +15,20 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = UserCalendarPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, icon:string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'My Calendar', icon:'calendar',component: UserCalendarPage },
+      { title: 'Set Availability',icon:'checkmark-circle-outline', component:SetAvailabilityPage },
+      { title: 'Course Details',icon:'book', component: CourseDetailsPage },
+      { title: 'Change MPin',icon:'key', component: ChangeMpinPage },
+      { title: 'Logout',icon:'log-out', component: LoginPage }
     ];
 
   }
