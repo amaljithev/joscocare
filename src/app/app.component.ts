@@ -15,6 +15,7 @@ import { ChangeMpinPage } from '../pages/change-mpin/change-mpin';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  username: string = "Mr. John Doe";
   rootPage: any = LoginPage;
 
   pages: Array<{title: string, icon:string, component: any}>;
@@ -22,7 +23,8 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     if(localStorage.getItem('auth_token')){
-      this.rootPage = UserCalendarPage;
+      //this.rootPage = UserCalendarPage;
+      this.rootPage = CourseDetailsPage;
     }    
     // used for an example of ngFor and navigation
     this.pages = [

@@ -1,13 +1,12 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
+  <ion-header class="primary">
+      <ion-row> <ion-col padding-top col-8 offset-2><img class="round-img" src="../assets/imgs/avatar-default.svg"></ion-col> </ion-row>
+          
+          <ion-title text-center padding-top padding-bottom>{{username}}</ion-title>
   </ion-header>
-
-  <ion-content>
-    <ion-list>
-        <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+  <ion-content class="dark" padding-top>
+    <ion-list class="dark" no-lines>
+        <ion-item menuClose *ngFor="let p of pages" class="dark" (click)="openPage(p)">
             <ion-icon name="{{p.icon}}" item-start></ion-icon>
             {{p.title}}
           </ion-item>
