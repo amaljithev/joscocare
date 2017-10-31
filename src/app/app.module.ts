@@ -9,7 +9,7 @@ import { UserCalendarPage } from '../pages/user-calendar/user-calendar';
 import { SetAvailabilityPage } from '../pages/set-availability/set-availability';
 import { CourseDetailsPage } from '../pages/course-details/course-details';
 import { ChangeMpinPage } from '../pages/change-mpin/change-mpin';
-
+ 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 

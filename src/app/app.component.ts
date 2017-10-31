@@ -15,13 +15,15 @@ import { ChangeMpinPage } from '../pages/change-mpin/change-mpin';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = UserCalendarPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, icon:string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
+    if(localStorage.getItem('auth_token')){
+      this.rootPage = UserCalendarPage;
+    }    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'My Calendar', icon:'calendar',component: UserCalendarPage },
@@ -45,6 +47,9 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    if(page.title=="Logout")
+        localStorage.removeItem('auth_token');
     this.nav.setRoot(page.component);
+    
   }
 }
