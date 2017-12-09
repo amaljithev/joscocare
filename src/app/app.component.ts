@@ -17,12 +17,13 @@ export class MyApp {
 
   username: string = "Mr. John Doe";
   rootPage: any = LoginPage;
-
+  isLoggedin : any;
   pages: Array<{title: string, icon:string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    if(localStorage.getItem('auth_token')){
+    this.isLoggedin = localStorage.getItem('auth_token');
+    if(this.isLoggedin){
       //this.rootPage = UserCalendarPage;
       this.rootPage = CourseDetailsPage;
     }    
@@ -50,7 +51,10 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if(page.title=="Logout")
-        localStorage.removeItem('auth_token');
+    {
+      localStorage.removeItem('auth_token');
+      this.isLoggedin = false;
+    }
     this.nav.setRoot(page.component);
     
   }

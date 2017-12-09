@@ -34,6 +34,12 @@
     font-size: 2em;
     line-height: 1.125em;
 }
+.bg-danger{
+    background-color: #e74c3c !important;
+}
+.bg-success{
+    background-color: #2ecc71 !important;
+}
 .border-danger{
     border: 1px solid #e74c3c !important;
 }
@@ -45,4 +51,38 @@
 }
 .border-rounded{
     border-radius: 3px;
+}
+.position-center{
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.display-block{
+    display: block;
+}
+.color-white{
+    color: white !important; 
+}
+
+.text-center{
+    text-align: center;
+}
+
+.pull-right{
+    float:right;
+}
+
+.clear:after{
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.bg-rounded{
+    border-radius:5px;
 }
