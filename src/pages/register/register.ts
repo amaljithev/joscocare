@@ -31,12 +31,12 @@ export class RegisterPage {
       this.httpService.register(this.email)
         .subscribe(response => {
             let res:any = response.json();
-            if(res.ResponseID == 2)
+            if(res.ResponseId == 2)
               this.showError=`User not found!<br>Please use your JoscoCare Id.<br>Contact support if problem persists.`;
-            else if (res.ResponseID == 3){
+            else if (res.ResponseId == 3){
               this.navCtrl.setRoot(LoginPage,{type:'error',body:'MPin has already been generated.<br>Please check your email.<br>'});
             }
-            else if(res.ResponseID == 1){
+            else if(res.ResponseId == 1){
               this.navCtrl.setRoot(LoginPage,{type:'success',body:'MPin has been generated.<br>Please check your email.'});
             }
           },

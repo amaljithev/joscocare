@@ -5,10 +5,15 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class HttpService {
+    isLoggedin;
+    username;
+    userId;
+    
     baseURL = "http://josco-apps-api-dev.azurewebsites.net/api/";
     headers = new Headers();
     constructor(private http:Http){
         if(localStorage.getItem('auth_token')){
+            this.isLoggedin = true;
             this.headers.set('token',localStorage.getItem('auth_token'));
         }
         this.headers.set('Content-Type','application/json');
@@ -29,6 +34,15 @@ export class HttpService {
             "UserName" : email
         };
         return this.http.post(this.baseURL+'register/registeruser',JSON.stringify(data),{headers: this.headers});
+    }
+
+    public changeMPIN(ompin,nmpin){
+        let data = {
+            "UserId" : localStorage.getItem('user'),
+            "OldMpin" : ompin,
+            "NewMpin" : nmpin
+        };
+        return this.http.post(this.baseURL+'register/changempin',JSON.stringify(data),{headers: this.headers});
     }
 
     public setAuthToken(token){

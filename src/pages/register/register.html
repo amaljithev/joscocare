@@ -1,5 +1,5 @@
 <div class="logo-header">
-  <img class="position-center" src="../../assets/imgs/josco.png" alt="">
+  <img class="position-center" src="assets/imgs/josco.png" alt="">
 </div>
 <div class="content">
   <div class="watermark layer-0"></div>
@@ -8,7 +8,7 @@
     <ion-label color="light" floating>Email/Mobile</ion-label>
     <ion-input [(ngModel)]="email" (input)="showError=false;" type="text" placeholder=""></ion-input>
   </ion-item>
-  <div><button ion-button round color="light" class="position-center" (click)="onRegister()" >Register</button></div>
+  <div class="margin-40"><button ion-button round color="light" class="margin-center" (click)="onRegister()" >Register</button></div>
   <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
     </p>
 </div>

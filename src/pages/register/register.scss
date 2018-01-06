@@ -1,6 +1,6 @@
 page-register {
     .watermark{
-        background-image: url("../../assets/imgs/watermark.jpg");
+        background-image: url("../assets/imgs/watermark.jpg");
         position: absolute;
         width: 100%;
         height: 100%;
@@ -52,7 +52,7 @@ page-register {
     }
 
     .footer{
-        position: absolute;
+        position: relative;
         padding:0;
         width: 100%;
         bottom: 0;

@@ -1,5 +1,5 @@
 <div class="logo-header">
-  <img class="position-center" src="../../assets/imgs/josco.png" alt="">
+  <img class="position-center" src="assets/imgs/josco.png" alt="">
 </div>
 <div class="content">
   <div class="watermark layer-0"></div>
@@ -17,7 +17,11 @@
       <ion-label color="light" floating>Confirm MPin</ion-label>
       <ion-input [(ngModel)]="new_mpin2" (input)="showError=false;" type="password"></ion-input>
     </ion-item>
-
+    <div class="clear">
+      <p class="color-white pull-right" padding>
+        &nbsp;
+      </p>
+    </div>
   <div><button ion-button round color="light" class="position-center" (click)="onChangeMPin()" >Change MPin</button></div>
   <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
     </p>

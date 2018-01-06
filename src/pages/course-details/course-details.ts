@@ -4,13 +4,21 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { UpdateCourseDetailsPage } from './update-course-details/update-course-details';
 
 import { LoginPage } from '../login/login';
+import { HttpService } from '../../services/http.service';
+
 @Component({
   selector: 'page-course-details',
   templateUrl: 'course-details.html',
 })
 export class CourseDetailsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl:ModalController) {
+//  courses;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public modalCtrl:ModalController,
+    private httpService:HttpService
+  ) {
+
   }
 
   courses =[{

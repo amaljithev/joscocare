@@ -7,6 +7,33 @@
     </ion-navbar>
   </ion-header>
 
-<ion-content padding>
-  This feature is under development.
+<ion-content>
+  <!--- <h2 class="text-center"> {{ viewTitle }} </h2> -->
+  <ion-title>
+      {{ viewTitle }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  
+      
+  <ng-template  #cal let-view="view" let-row="row" let-col="col" >
+      <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+          {{view.dates[row*7+col].label}}
+        </div>
+  </ng-template>
+
+  <calendar [monthviewDisplayEventTemplate]="cal"
+  [eventSource]="eventSource"
+  [markDisabled]="markDisabled"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)"
+  step="30"
+  class="calendar">
+</calendar>
 </ion-content>

@@ -44,14 +44,19 @@ export class LoginPage {
     else if(!this.mpin)
       this.showError=`Please enter a valid MPin.<br>If you are new user, please register.`;
     else{
-      this.httpService.login(this.email,this.mpin,this.deviceId)
+      this.httpService.login(this.email,this.mpin,this.deviceId?this.deviceId:'0000000')
         .subscribe(response => {
+          console.log(response)
             let headers = response.headers;
             let res:any = response.json();
-            if(res.ResponseID == 103)
-              this.showError=`Incorrect User Name or Password!<br>Try again, or reset MPIN.<br>If you are new user,please register.`;
-            else if(res.ResponseID == 100){
+            if(res.ResponseId == 103)
+              this.showError=`Incorrect User Name or Password!<br>Try again, or reset MPIN.<br>If you are a new user, Please Register.`;
+            else if(res.ResponseId == 100){
                 localStorage.setItem('auth_token',headers.get('token'));
+                this.httpService.headers.set('token',headers.get('token'));
+                this.httpService.isLoggedin = true;
+                this.httpService.username = res.UserFullName;
+                this.httpService.userId = res.UserId;
                 this.httpService.setAuthToken(headers.get('token'));
                 this.navCtrl.setRoot(CourseDetailsPage);
             }

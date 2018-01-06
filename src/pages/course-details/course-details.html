@@ -17,8 +17,8 @@
               <p>{{course.description}}</p>
           </ion-col>
           <ion-col col-4>
-            <span *ngIf="course.hasExpired" padding round float-right text-center class="border-rounded border-danger">Course<br>expired</span>
-            <span *ngIf="course.expiry" padding round float-right text-center class="border-rounded border-{{course.expiry}}">Validity<br><span class="font-emphasis ">17</span><br>days</span>
+            <span *ngIf="course.hasExpired" padding round float-right text-center class="border-rounded bg-danger">Course<br>expired</span>
+            <span *ngIf="course.expiry" padding round float-right text-center class="border-rounded bg-{{course.expiry}}">Validity<br><span class="font-emphasis ">17</span><br>days</span>
           </ion-col>
         </ion-row>
         

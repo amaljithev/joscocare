@@ -9,9 +9,16 @@ import { LoginPage } from '../../login/login';
 })
 export class UpdateCourseDetailsPage {
 
+  title;
+  desc;
+  start;
+  end;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public viewCtrl:ViewController) {
+      this.title = navParams.get('title');
+      this.desc = navParams.get('description');
   }
 
   ionViewWillEnter() {
@@ -20,6 +27,13 @@ export class UpdateCourseDetailsPage {
       this.navCtrl.setRoot(LoginPage);
     }
   }
- 
+
+  onUpdateCourse(){
+    console.log(this.start,this.end)
+  }
+  
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 
 }

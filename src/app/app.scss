@@ -15,6 +15,18 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import 'node_modules/text-security/dist/text-security.css';
+@font-face {
+    font-family: 'text-security-disc';
+    src: url('../assets/fonts/text-security-disc.eot');
+    src: url('../assets/fonts/text-security-disc.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/text-security-disc.woff') format('woff'),
+        url('../assets/fonts/text-security-disc.ttf') format('truetype'),
+        url('../assets/fonts/text-security-disc.svg#text-security') format('svg');
+}
+.conceal {
+    font-family: 'text-security-disc';    
+}
 .primary{
     background-color: #00adef;
     color: #fff; 
@@ -36,6 +48,9 @@
 }
 .bg-danger{
     background-color: #e74c3c !important;
+}
+.bg-warning{
+    background-color: #f1c40f !important;
 }
 .bg-success{
     background-color: #2ecc71 !important;
@@ -69,6 +84,13 @@
     text-align: center;
 }
 
+.margin-center{
+    display: block;
+    margin:auto;
+}
+.margin-40{
+    margin:40px;
+}
 .pull-right{
     float:right;
 }
@@ -86,3 +108,61 @@
 .bg-rounded{
     border-radius:5px;
 }
+.josco-header{
+    height:20vh;
+}
+
+.mt-1{
+    margin-top: 16px;
+}
+.monthview-selected {
+    background-color: #00adef !important;
+    border-radius: 5px !important;
+    color: black !important;
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+    border:none !important;
+}
+
+  td.monthview-current {
+    color: white;
+
+    .calendar-day {
+      background-color: color($colors, 'light') !important;
+    }
+  }
+
+  .monthview-datetable {
+    border: 0 !important;
+
+    td, th {
+      border: 0 !important;
+      padding: 3px!important;
+      background-color: transparent!important;
+    }
+  }
+
+  .calendar-day {
+    border-radius: 6px;
+    padding: 3px 5px;
+
+    &.late {
+      background-color: #c0392b;
+      color: white;
+    }
+
+    &.early {
+      background-color: #f1c40f;
+      color: white;
+    }
+
+    &.longday {
+      background-color: #8e44ad;
+      color: white;
+    }
+
+    &.night {
+      background-color: #2c3e50;
+      color: white;
+    }
+  }
