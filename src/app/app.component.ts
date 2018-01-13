@@ -16,7 +16,6 @@ import { HttpService } from '../services/http.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
-  isLoggedin : any;
   pages: Array<{title: string, icon:string, component: any}>;
 
   constructor(public platform: Platform, 
@@ -47,11 +46,21 @@ export class MyApp {
   }
 
   openPage(page) {
+    console.log(page);
     if(page.title=="Logout")
     {
+      this.httpService.logout().subscribe((response) => {
+        let res = response.json();
+      });
       localStorage.removeItem('auth_token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('userId');
       this.httpService.isLoggedin = false;
+      this.httpService.logout();
+      this.nav.setRoot(LoginPage);
     }
-    this.nav.setRoot(page.component);
+    else{
+      this.nav.setRoot(page.component);  
+    }
   }
 }

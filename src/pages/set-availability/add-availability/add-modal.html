@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Select Shift | {{shift.startTime}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Select All</ion-label>
+      <ion-checkbox (ionChange)="onCheckAll()" [(ngModel)]="all"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Early</ion-label>
+      <ion-checkbox [(ngModel)]="shift.selectedShifts.early"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Long Day</ion-label>
+      <ion-checkbox [(ngModel)]="shift.selectedShifts.longday"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Late</ion-label>
+      <ion-checkbox [(ngModel)]="shift.selectedShifts.late"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Night</ion-label>
+      <ion-checkbox [(ngModel)]="shift.selectedShifts.night"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Set for entire week?</ion-label>
+      <ion-checkbox [(ngModel)]="shift.allWeek"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full icon-left (click)="save()">
+    <ion-icon name="checkmark"></ion-icon> Set Shift
+  </button>
+</ion-content>

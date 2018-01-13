@@ -8,7 +8,7 @@
     <ion-label color="light" floating>Email/Mobile</ion-label>
     <ion-input [(ngModel)]="email" (input)="showError=false;" type="text" placeholder=""></ion-input>
   </ion-item>
-  <div class="margin-40"><button ion-button round color="light" class="margin-center" (click)="onRegister()" >Register</button></div>
+  <div class="mt-1"><button ion-button full large color="light" (click)="onRegister()" >Sign Up</button></div>
   <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
     </p>
 </div>

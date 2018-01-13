@@ -8,23 +8,12 @@
   </ion-header>
 
 <ion-content>
-  <!--- <h2 class="text-center"> {{ viewTitle }} </h2> -->
-  <ion-title>
-      {{ viewTitle }}
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addEvent()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  
-      
+  <h2 class="text-center"> {{ viewTitle }} </h2>    
   <ng-template  #cal let-view="view" let-row="row" let-col="col" >
       <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
           {{view.dates[row*7+col].label}}
         </div>
   </ng-template>
-
   <calendar [monthviewDisplayEventTemplate]="cal"
   [eventSource]="eventSource"
   [markDisabled]="markDisabled"
@@ -35,5 +24,5 @@
   (onTimeSelected)="onTimeSelected($event)"
   step="30"
   class="calendar">
-</calendar>
+  </calendar>
 </ion-content>

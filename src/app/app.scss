@@ -28,8 +28,12 @@
     font-family: 'text-security-disc';    
 }
 .primary{
-    background-color: #00adef;
+    background-color: #174873;
     color: #fff; 
+}
+.aqua{
+    background-color: #34bdf1;
+    color: #fff;
 }
 .dark{
     background-color: #333;
@@ -115,8 +119,12 @@
 .mt-1{
     margin-top: 16px;
 }
+.pl-1{
+    padding-left: 16px;
+}
+
 .monthview-selected {
-    background-color: #00adef !important;
+    background-color: #174873 !important;
     border-radius: 5px !important;
     color: black !important;
 }
@@ -166,3 +174,25 @@
       color: white;
     }
   }
+
+  calendar{
+      position: absolute;
+      height: auto;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      .event-detail-container{
+          display: none;
+      }
+  }
+
+ion-app.md{
+    font-size:15px !important;
+}
+
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+    box-shadow: none !important;
+}
+
+.header-md::after {
+    background: none !important;
+}

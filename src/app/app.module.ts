@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { UserCalendarPage } from '../pages/user-calendar/user-calendar';
-import { AddModalPage } from '../pages/user-calendar/add-availability/add-modal';
+import { AddModalPage } from '../pages/set-availability/add-availability/add-modal';
 import { SetAvailabilityPage } from '../pages/set-availability/set-availability';
 import { CourseDetailsPage } from '../pages/course-details/course-details';
 import { UpdateCourseDetailsPage } from '../pages/course-details/update-course-details/update-course-details';

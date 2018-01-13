@@ -27,7 +27,7 @@ export class ChangeMpinPage {
     }
   }
 
-  onChangeMPIN(){
+  onChangeMPin(){
     if(!this.old_mpin)
       this.showError=`Please enter a valid old password.`;
     else if(!this.new_mpin1)
@@ -40,11 +40,15 @@ export class ChangeMpinPage {
             let res:any = response.json();
             if(res.Message == "Authorization has been denied for this request."){
               localStorage.removeItem('auth_token');
+              this.httpService.isLoggedin = false;
               this.navCtrl.setRoot(LoginPage,{type:'error',body:'Your session has expired, please login!'});
             }
             else if(res.StatusCode == 104){
               localStorage.removeItem('auth_token');
-              this.navCtrl.setRoot(LoginPage,{type:'success',body:'Password has been successfully changed<br>Please login to continue.'});
+              this.showSuccess=`MPin changes successfully!`;
+            }
+            else if(res.StatusCode == 105){
+              this.showError=`Wrong MPin. Try again!`;
             }
           },
           err => { this.showError=`Login Request Failed!<br>Please check your Network Connection`; 

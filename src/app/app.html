@@ -1,12 +1,12 @@
 <ion-menu [content]="content" [enabled]="httpService.isLoggedin" >
-  <ion-header class="primary">
+  <ion-header class="aqua">
       <ion-row> <ion-col padding-top col-8 offset-2><img class="round-img" src="assets/imgs/avatar-default.svg"></ion-col> </ion-row>
           
           <ion-title text-center padding-top padding-bottom>{{httpService.username}}</ion-title>
   </ion-header>
-  <ion-content class="dark" padding-top>
-    <ion-list class="dark" no-lines>
-        <ion-item menuClose *ngFor="let p of pages" class="dark" (click)="openPage(p)">
+  <ion-content class="aqua" padding-top>
+    <ion-list class="pl-1 aqua" no-lines>
+        <ion-item menuClose *ngFor="let p of pages" class="aqua" (click)="openPage(p)">
             <ion-icon name="{{p.icon}}" item-start></ion-icon>
             {{p.title}}
           </ion-item>

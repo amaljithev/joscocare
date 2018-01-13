@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
 import { LoginPage } from '../login/login';
-import { AddModalPage } from './add-availability/add-modal'
 
 @Component({
   selector: 'page-user-calendar',
@@ -23,16 +22,25 @@ export class UserCalendarPage {
     endTime: new Date('Jan-9-2018 9:33:20'),
    color: 'early'
   },{
+    title: 'Title for the event',
+    startTime: new Date('Jan-16-2018 6:33:20'),
+    endTime: new Date('Jan-16-2018 9:33:20'),
+   color: 'night'
+  },{
+    title: 'Title for the event',
+    startTime: new Date('Jan-21-2018 6:33:20'),
+    endTime: new Date('Jan-21-2018 9:33:20'),
+   color: 'late'
+  },{
     title: 'Title for the event 2',
-    startTime: new Date('Jan-10-2018 6:33:20'),
-    endTime: new Date('Jan-10-2018 9:33:20'),
+    startTime: new Date('Jan-30-2018 6:33:20'),
+    endTime: new Date('Jan-30-2018 9:33:20'),
     color: 'longday'
   }];
   viewTitle: string;
   selectedDay = new Date();
   
   constructor(public navCtrl: NavController,
-    private modalCtrl: ModalController,
     private alertCtrl: AlertController
   ) {
   }
@@ -48,42 +56,22 @@ export class UserCalendarPage {
     this.viewTitle = title;
   };
 
-  onTimeSelected = (ev: Date) => {
-    console.log('Currently time selected date: ' + JSON.stringify(ev));
+  onTimeSelected = (ev) => {
+    if( !ev.disabled )
+      this.showAlert(ev);
   };
 
-  onEventSelected(event) {
+  showAlert(event) {
     let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
       
       let alert = this.alertCtrl.create({
-        title: '' + event.title,
+        title: "Shift details",
         subTitle: 'From: ' + start + '<br>To: ' + end,
         buttons: ['OK']
       })
       alert.present();
   }
-
-  addEvent() {
-    let modal = this.modalCtrl.create(AddModalPage, {selectedDay: this.selectedDay});
-    modal.present();
-    modal.onDidDismiss(data => {
-      if (data) {
-        let eventData = data;
- 
-        eventData.startTime = new Date(data.startTime);
-        eventData.endTime = new Date(data.endTime);
- 
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(() => {
-          this.eventSource = events;
-        });
-      }
-    });
-  }
-
 
   ionViewWillEnter() {
     //make sure user is logged in

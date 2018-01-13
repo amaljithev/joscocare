@@ -12,39 +12,54 @@ import { HttpService } from '../../services/http.service';
 })
 export class CourseDetailsPage {
 
-//  courses;
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public modalCtrl:ModalController,
-    private httpService:HttpService
-  ) {
-
+  courses = [];
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private httpService: HttpService) {
+    this.refreshCourses();
   }
 
-  courses =[{
-    title:'Test Course 1',
-    description:'Do ver well witll test',
-    hasExpired:true
-  },{
-    title:'Test Course 2',
-    description:'Do very well with tests',
-    expiry:'warning'
-  },{
-    title:'Test Course 3',
-    description:'Do very well with tests',
-    expiry:'success'
-  }];
+  refreshCourses() {
+    this.courses = [];
+    this.httpService.getCourseDetails().subscribe((response) => {
+      let res = response.json();
+      if (res.Message == "Authorization has been denied for this request.") {
+        localStorage.removeItem('auth_token');
+        this.httpService.isLoggedin = false;
+        this.navCtrl.setRoot(LoginPage, { type: 'error', body: 'Your session has expired, please login!' });
+      }
+      else {
+        res.forEach(course => this.courses.push({
+          title: course.Coursename,
+          CeId: course.CeId,
+          CourseId: course.CourseId,
+          IsEdit: course.IsEdit,
+          start: course.StartDate,
+          end: course.Enddate,
+          validity: course.ValidationInDays,
+          description: course.Description,
+          hasExpired: course.ValidationInDays <= 0,
+          expiry: course.ValidationInDays < 15 ? 'warning' : 'success'
+        }));
+      }
+    });
+  }
+
   ionViewWillEnter() {
     //make sure user is logged in
-    if(!localStorage.getItem('auth_token')){
+    if (!localStorage.getItem('auth_token')) {
       this.navCtrl.setRoot(LoginPage);
     }
   }
 
   updateCourseModal(course) {
     const updateModal = this.modalCtrl.create(UpdateCourseDetailsPage, course);
+    updateModal.onDidDismiss((data) => {
+      if (data) {
+        this.refreshCourses();
+      }
+    });
     updateModal.present();
   }
- 
-
 }

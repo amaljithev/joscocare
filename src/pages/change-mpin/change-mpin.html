@@ -1,6 +1,12 @@
-<div class="logo-header">
-  <img class="position-center" src="assets/imgs/josco.png" alt="">
-</div>
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Change MPin</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
 <div class="content">
   <div class="watermark layer-0"></div>
   <div class="custom-padding layer-1">
@@ -22,10 +28,11 @@
         &nbsp;
       </p>
     </div>
-  <div><button ion-button round color="light" class="position-center" (click)="onChangeMPin()" >Change MPin</button></div>
+  <div><button ion-button full large color="light" (click)="onChangeMPin()" >Change MPin</button></div>
   <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
     </p>
   <p *ngIf="showSuccess" [innerHTML]="showSuccess" class="color-white bg-success bg-rounded text-center" padding>
     </p>
 </div>
 </div>
+</ion-content>

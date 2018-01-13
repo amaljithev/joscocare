@@ -18,7 +18,7 @@
           </ion-col>
           <ion-col col-4>
             <span *ngIf="course.hasExpired" padding round float-right text-center class="border-rounded bg-danger">Course<br>expired</span>
-            <span *ngIf="course.expiry" padding round float-right text-center class="border-rounded bg-{{course.expiry}}">Validity<br><span class="font-emphasis ">17</span><br>days</span>
+            <span *ngIf="!course.hasExpired && course.expiry" padding round float-right text-center class="border-rounded bg-{{course.expiry}}">Validity<br><span class="font-emphasis ">{{course.validity}}</span><br>days</span>
           </ion-col>
         </ion-row>
         
