@@ -13,12 +13,6 @@ export class HttpService {
     headers = new Headers();
     
     constructor(private http:Http){
-        if(localStorage.getItem('auth_token') && localStorage.getItem('username') && localStorage.getItem('userId')){
-            this.isLoggedin = true;
-            this.headers.set('token',localStorage.getItem('auth_token'));
-            this.username = localStorage.getItem('username')
-            this.userId = localStorage.getItem('userId')
-        }
         this.headers.set('Content-Type','application/json');
         this.headers.set('Accept','application/json');
     }
@@ -53,8 +47,11 @@ export class HttpService {
     }
 
     public logout(){
-        console.log(this.headers);
-        return this.http.post(this.baseURL+'register/logout?UserId='+this.userId,null,{headers: this.headers});        
+        return this.http.post(this.baseURL+'register/logout?UserId='+this.userId,null,{headers: this.headers})
+                .subscribe((response) => {
+                    let res = response.json();
+                    this.isLoggedin = false;
+                });;        
     }
     
     public updateCourse(data){

@@ -16,26 +16,25 @@ import { HttpService } from '../services/http.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
-  pages: Array<{title: string, icon:string, component: any}>;
+  pages: Array<{ title: string, icon: string, component: any }>;
 
-  constructor(public platform: Platform, 
+  constructor(public platform: Platform,
     public statusBar: StatusBar,
-    private httpService:HttpService,
+    private httpService: HttpService,
     public splashScreen: SplashScreen) {
 
-      this.initializeApp();
-      if(this.httpService.isLoggedin){
-        this.rootPage = UserCalendarPage;
-      }    
-      // used for an example of ngFor and navigation
-      this.pages = [
-        { title: 'My Calendar', icon:'calendar',component: UserCalendarPage },
-        { title: 'Set Availability',icon:'checkmark-circle-outline', component:SetAvailabilityPage },
-        { title: 'Course Details',icon:'book', component: CourseDetailsPage },
-        { title: 'Change MPin',icon:'key', component: ChangeMpinPage },
-        { title: 'Logout',icon:'log-out', component: LoginPage }
-      ];
-
+    this.initializeApp();
+    if (this.httpService.isLoggedin) {
+      this.rootPage = UserCalendarPage;
+    }
+    // used for an example of ngFor and navigation
+    this.pages = [
+      { title: 'My Calendar', icon: 'calendar', component: UserCalendarPage },
+      { title: 'Set Availability', icon: 'checkmark-circle-outline', component: SetAvailabilityPage },
+      { title: 'Course Details', icon: 'book', component: CourseDetailsPage },
+      { title: 'Change MPin', icon: 'key', component: ChangeMpinPage },
+      { title: 'Logout', icon: 'log-out', component: LoginPage }
+    ];
   }
 
   initializeApp() {
@@ -46,21 +45,11 @@ export class MyApp {
   }
 
   openPage(page) {
-    console.log(page);
-    if(page.title=="Logout")
-    {
-      this.httpService.logout().subscribe((response) => {
-        let res = response.json();
-      });
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('username');
-      localStorage.removeItem('userId');
-      this.httpService.isLoggedin = false;
+    if (page.title == "Logout") {
       this.httpService.logout();
       this.nav.setRoot(LoginPage);
-    }
-    else{
-      this.nav.setRoot(page.component);  
+    } else {
+      this.nav.setRoot(page.component);
     }
   }
 }

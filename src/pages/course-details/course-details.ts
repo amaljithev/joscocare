@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
 import { UpdateCourseDetailsPage } from './update-course-details/update-course-details';
 
@@ -16,6 +16,7 @@ export class CourseDetailsPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    private alertCtrl: AlertController,    
     private httpService: HttpService) {
     this.refreshCourses();
   }
@@ -43,12 +44,18 @@ export class CourseDetailsPage {
           expiry: course.ValidationInDays < 15 ? 'warning' : 'success'
         }));
       }
+    }, err => {
+      this.alertCtrl.create({
+        title: "Network Error",
+        subTitle: 'Please check your internet connection!',
+        buttons: ['OK']
+      }).present();
     });
   }
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if (!localStorage.getItem('auth_token')) {
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }

@@ -1,29 +1,28 @@
-   <div class="logo-header">
+<div class="logo-header">
   <img class="position-center" src="assets/imgs/josco.png" alt="">
 </div>
 <div class="content">
   <div class="watermark layer-0"></div>
   <div class="custom-padding layer-1">
-  <ion-item class="bg-transparent color-white">
-    <ion-label color="light" floating>Email/Mobile</ion-label>
-    <ion-input [(ngModel)]="email" (input)="showError=false;" type="text" placeholder=""></ion-input>
-  </ion-item>
-
-  <ion-item class="bg-transparent color-white">
-    <ion-label color="light" floating>MPIN</ion-label>
-    <ion-input [(ngModel)]="mpin" (input)="showError=false;" type="number" class="conceal"></ion-input>
-  </ion-item>
-  <div class="clear">
-    <p class="color-white pull-right" padding>
-      Forgot MPIN?
-    </p>
+    <ion-item class="bg-transparent color-white">
+      <ion-label color="light" floating>Email/Mobile</ion-label>
+      <ion-input [(ngModel)]="email" (input)="showError=false;" type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item class="bg-transparent color-white">
+      <ion-label color="light" floating>MPIN</ion-label>
+      <ion-input [(ngModel)]="mpin" (input)="showError=false;" type="number" class="conceal"></ion-input>
+    </ion-item>
+    <div class="clear">
+      <p class="color-white pull-right" padding>
+        Forgot MPIN?
+      </p>
+    </div>
+    <div>
+      <button ion-button full large color="light" (click)="onLogin()">Login</button>
+    </div>
+    <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding></p>
+    <p *ngIf="showSuccess" [innerHTML]="showSuccess" class="color-white bg-success bg-rounded text-center" padding></p>
   </div>
-  <div><button ion-button full large color="light" (click)="onLogin()" >Login</button></div>
-  <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
-    </p>
-  <p *ngIf="showSuccess" [innerHTML]="showSuccess" class="color-white bg-success bg-rounded text-center" padding>
-    </p>
-</div>
   <p class="color-white text-center footer" [navPush]="registerPage" padding>
     New User? Generate MPIN
   </p>

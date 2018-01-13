@@ -25,7 +25,7 @@ export class LoginPage {
   }
 
   ionViewCanEnter() {
-    if(!localStorage.getItem('auth_token')){
+    if(!this.httpService.isLoggedin){
       this.uniqueDeviceID.get()
       .then((uuid: any) => this.deviceId = uuid);
       return true;
@@ -46,19 +46,14 @@ export class LoginPage {
     else{
       this.httpService.login(this.email,this.mpin,this.deviceId?this.deviceId:'0000000')
         .subscribe(response => {
-          console.log(response)
             let res:any = response.json();
             if(res.ResponseId == 103)
               this.showError=`Incorrect User Name or Password!<br>Try again, or reset MPIN.<br>If you are a new user, Please Register.`;
             else if(res.ResponseId == 100){
-                localStorage.setItem('auth_token',res.Token);
-                localStorage.setItem('username',res.UserFullName);
-                localStorage.setItem('userId',res.UserId);
-                this.httpService.headers.set('token',res.Token);
+                this.httpService.setAuthToken(res.Token);
                 this.httpService.isLoggedin = true;
                 this.httpService.username = res.UserFullName;
                 this.httpService.userId = res.UserId;
-                this.httpService.setAuthToken(res.Token);
                 this.navCtrl.setRoot(UserCalendarPage);
             }
           },

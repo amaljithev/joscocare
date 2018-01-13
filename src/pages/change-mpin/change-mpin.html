@@ -1,38 +1,39 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Change MPin</ion-title>
-    </ion-navbar>
-  </ion-header>
-  <ion-content>
-<div class="content">
-  <div class="watermark layer-0"></div>
-  <div class="custom-padding layer-1">
-
-  <ion-item class="bg-transparent color-white">
-    <ion-label color="light" floating>Old MPin</ion-label>
-    <ion-input [(ngModel)]="old_mpin" (input)="showError=false;" type="password"></ion-input>
-  </ion-item>
-  <ion-item class="bg-transparent color-white">
-      <ion-label color="light" floating>New MPin</ion-label>
-      <ion-input [(ngModel)]="new_mpin1" (input)="showError=false;" type="password"></ion-input>
-    </ion-item>
-  <ion-item class="bg-transparent color-white">
-      <ion-label color="light" floating>Confirm MPin</ion-label>
-      <ion-input [(ngModel)]="new_mpin2" (input)="showError=false;" type="password"></ion-input>
-    </ion-item>
-    <div class="clear">
-      <p class="color-white pull-right" padding>
-        &nbsp;
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Change MPin</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="content">
+    <div class="watermark layer-0"></div>
+    <div class="custom-padding layer-1">
+      <ion-item class="bg-transparent color-white">
+        <ion-label color="light" floating>Old MPin</ion-label>
+        <ion-input [(ngModel)]="old_mpin" (input)="showError=false;" type="password"></ion-input>
+      </ion-item>
+      <ion-item class="bg-transparent color-white">
+        <ion-label color="light" floating>New MPin</ion-label>
+        <ion-input [(ngModel)]="new_mpin1" (input)="showError=false;" type="password"></ion-input>
+      </ion-item>
+      <ion-item class="bg-transparent color-white">
+        <ion-label color="light" floating>Confirm MPin</ion-label>
+        <ion-input [(ngModel)]="new_mpin2" (input)="showError=false;" type="password"></ion-input>
+      </ion-item>
+      <div class="clear">
+        <p class="color-white pull-right" padding>
+          &nbsp;
+        </p>
+      </div>
+      <div>
+        <button ion-button full large color="light" (click)="onChangeMPin()">Change MPin</button>
+      </div>
+      <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
+      </p>
+      <p *ngIf="showSuccess" [innerHTML]="showSuccess" class="color-white bg-success bg-rounded text-center" padding>
       </p>
     </div>
-  <div><button ion-button full large color="light" (click)="onChangeMPin()" >Change MPin</button></div>
-  <p *ngIf="showError" [innerHTML]="showError" class="color-white bg-danger bg-rounded text-center" padding>
-    </p>
-  <p *ngIf="showSuccess" [innerHTML]="showSuccess" class="color-white bg-success bg-rounded text-center" padding>
-    </p>
-</div>
-</div>
+  </div>
 </ion-content>

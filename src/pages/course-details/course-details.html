@@ -1,26 +1,27 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Course Details</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Course Details</ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding>
   <ion-card (click)="updateCourseModal(course)" *ngFor="let course of courses">
-        <ion-row padding>
-          <ion-col>
-              <ion-card-title> 
-                  {{course.title}}
-              </ion-card-title>
-              <p>{{course.description}}</p>
-          </ion-col>
-          <ion-col col-4>
-            <span *ngIf="course.hasExpired" padding round float-right text-center class="border-rounded bg-danger">Course<br>expired</span>
-            <span *ngIf="!course.hasExpired && course.expiry" padding round float-right text-center class="border-rounded bg-{{course.expiry}}">Validity<br><span class="font-emphasis ">{{course.validity}}</span><br>days</span>
-          </ion-col>
-        </ion-row>
-        
+    <ion-row padding>
+      <ion-col>
+        <ion-card-title>{{course.title}}</ion-card-title>
+        <p>{{course.description}}</p>
+      </ion-col>
+      <ion-col col-4>
+        <span *ngIf="course.hasExpired" padding round float-right text-center class="border-rounded bg-danger">Course
+          <br>expired</span>
+        <span *ngIf="!course.hasExpired && course.expiry" padding round float-right text-center class="border-rounded bg-{{course.expiry}}">Validity
+          <br>
+          <span class="font-emphasis ">{{course.validity}}</span>
+          <br>days</span>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>

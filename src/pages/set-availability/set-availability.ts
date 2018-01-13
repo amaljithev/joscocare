@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
+import * as moment from 'moment';
 
 
 import { AddModalPage } from './add-availability/add-modal';
 import { LoginPage } from '../login/login';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'page-set-availability',
@@ -13,8 +15,8 @@ export class SetAvailabilityPage {
 
   
   constructor(public navCtrl: NavController,
-    private modalCtrl: ModalController
-  ) {
+    private modalCtrl: ModalController,
+    private httpService: HttpService) {
   }
   
   shifts: string[] = ['early', 'longday', 'late', 'night'];
@@ -26,8 +28,8 @@ export class SetAvailabilityPage {
 
   eventSource = [];
   viewTitle: string;
-  selectedDay = new Date();
-  
+  selectedDay;
+
   markDisabled = (date: Date) => {
     let cur = new Date();
     let plus30 = new Date(cur.setDate(cur.getDate() + 30));
@@ -39,10 +41,9 @@ export class SetAvailabilityPage {
     this.viewTitle = title;
   };
 
-  onCurrentDateChanged = (ev) => {
-    console.log(ev);
+  onTimeSelected = (ev) => {
     if( !ev.disabled ){
-      this.selectedDay = ev.selectedTime;
+      this.selectedDay = moment(ev.selectedTime).format('DD MMM YYYY');      
       this.addEvent();
     }
   };
@@ -59,7 +60,7 @@ export class SetAvailabilityPage {
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if(!localStorage.getItem('auth_token')){
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }

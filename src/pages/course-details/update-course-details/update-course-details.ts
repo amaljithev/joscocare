@@ -35,7 +35,7 @@ export class UpdateCourseDetailsPage {
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if (!localStorage.getItem('auth_token')) {
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }
@@ -60,7 +60,6 @@ export class UpdateCourseDetailsPage {
       };
       this.httpService.updateCourse(data).subscribe(response => {
         let res = response.json();
-        console.log(res);
         if (res.Message == "Authorization has been denied for this request.") {
           localStorage.removeItem('auth_token');
           this.httpService.isLoggedin = false;
@@ -92,6 +91,12 @@ export class UpdateCourseDetailsPage {
             alert.present();
           }
         }
+      }, err => {
+        this.alertCtrl.create({
+          title: "Network Error",
+          subTitle: 'Please check your internet connection!',
+          buttons: ['OK']
+        }).present();
       });
     }
   }

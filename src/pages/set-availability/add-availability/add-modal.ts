@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import * as moment from 'moment';
 
+import { HttpService } from '../../../services/http.service';
 import { LoginPage } from '../../login/login';
 
 @Component({
@@ -25,7 +26,9 @@ export class AddModalPage {
 
   minDate = new Date().toISOString();
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, 
+    public viewCtrl: ViewController,
+    private httpService: HttpService) {
     let preselectedDate = moment(this.navParams.get('selectedDay')).format('DD MMM YYYY');
     this.shift.startTime = preselectedDate;
     this.shift.endTime = preselectedDate;
@@ -33,13 +36,12 @@ export class AddModalPage {
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if (!localStorage.getItem('auth_token')) {
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }
 
   onCheckAll() {
-    console.log(this.shift);
     if (this.all == true){
       this.shift.selectedShifts.early = true;
       this.shift.selectedShifts.longday = true;
@@ -54,12 +56,10 @@ export class AddModalPage {
   }
 
   cancel() {
-    console.log(this.shift);    
     this.viewCtrl.dismiss();
   }
 
   save() {
-    console.log(this.shift);    
     this.viewCtrl.dismiss(this.shift);
   }
 

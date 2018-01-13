@@ -22,7 +22,7 @@ export class ChangeMpinPage {
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if(!localStorage.getItem('auth_token')){
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }
@@ -45,13 +45,13 @@ export class ChangeMpinPage {
             }
             else if(res.StatusCode == 104){
               localStorage.removeItem('auth_token');
-              this.showSuccess=`MPin changes successfully!`;
+              this.showSuccess=`MPin changed successfully!`;
             }
             else if(res.StatusCode == 105){
               this.showError=`Wrong MPin. Try again!`;
             }
           },
-          err => { this.showError=`Login Request Failed!<br>Please check your Network Connection`; 
+          err => { this.showError=`Request Failed!<br>Please check your Network Connection`; 
         });
       
     }

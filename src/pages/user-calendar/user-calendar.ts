@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import * as moment from 'moment';
 
+import { HttpService } from '../../services/http.service';
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -41,8 +42,8 @@ export class UserCalendarPage {
   selectedDay = new Date();
   
   constructor(public navCtrl: NavController,
-    private alertCtrl: AlertController
-  ) {
+    private alertCtrl: AlertController,
+    private httpService: HttpService) {      
   }
 
   markDisabled = (date: Date) => {
@@ -75,7 +76,7 @@ export class UserCalendarPage {
 
   ionViewWillEnter() {
     //make sure user is logged in
-    if(!localStorage.getItem('auth_token')){
+    if(!this.httpService.isLoggedin){
       this.navCtrl.setRoot(LoginPage);
     }
   }

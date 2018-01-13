@@ -3,27 +3,20 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My Calendar</ion-title>
+    <ion-title>Set Availability</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-<h2 class="text-center"> {{ viewTitle }} </h2>    
-<ng-template  #cal let-view="view" let-row="row" let-col="col" >
+  <h2 class="text-center"> {{ viewTitle }} </h2>
+  <ng-template #cal let-view="view" let-row="row" let-col="col">
     <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
-        {{view.dates[row*7+col].label}}
-      </div>
-</ng-template>
+      {{view.dates[row*7+col].label}}
+    </div>
+  </ng-template>
 
-<calendar [monthviewDisplayEventTemplate]="cal"
-[eventSource]="eventSource"
-[markDisabled]="markDisabled"
-[calendarMode]="calendar.mode"
-[currentDate]="calendar.currentDate"
-(onEventSelected)="onEventSelected($event)"
-(onTitleChanged)="onViewTitleChanged($event)"
-(onCurrentDateChanged)="onCurrentDateChanged($event)"
-step="30"
-class="calendar">
-</calendar>
+  <calendar [monthviewDisplayEventTemplate]="cal" [eventSource]="eventSource" [markDisabled]="markDisabled" [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
+  </calendar>
 </ion-content>
